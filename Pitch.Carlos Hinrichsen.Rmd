@@ -1,0 +1,49 @@
+---
+title: <font size="7">"Week 4 Course Project Developing Data Products"</font>
+subtitle: <font size="6">"K-Means applied to Iris Data Set"</font>
+author: "Carlos Hinrichsen"
+date: "June 11th, 2019"
+output: ioslides_presentation
+---
+
+```{r libraries, include=FALSE}
+library(leaflet)
+library(ggplot2)
+library(plotly)
+```
+
+## OBJECTIVES
+
+The main purporse of this application is to show the a clustering algorithm, in particular K-Means Algorithm.
+
+Through the app is it possible to understand how the number of instances change when the number of selected Cluster change. This is relevant because this algorithm is very sensitive to the number of clusters inout provided by the user.
+
+## ASSUMPTIONS
+
+In order to run the app, it is important to notice the following:
+
+1. The iris data set was used
+2. All the variables were used to perform the clustering (except the flower classification)
+3. It was used the default method to calculate distances, Euclidean
+
+## RESOURCES
+
+The Shiny application is located in the following link:
+
+https://chinrichsen.shinyapps.io/k-means_clustering_iris/
+
+On the other side, the UI and Server code are located in the following link:
+
+https://github.com/chinrichsen/kmeans_clustering_shinyapp
+
+## EMBEDDED CODE AND PLOT
+
+Below it is shown a plot considering 5 as the selected number of Clusters (the red horizontal line is the average number of instances by cluster).
+
+```{r iris,echo=T,fig.height = 3, fig.width = 5}
+tablec <- (table((data.frame(kmeans(iris[, -c(5)], 5)$cluster))))
+plot(tablec,type = "p",main="Number of Instances by Cluster",
+     xlab="Cluster Number", ylab="Number of Instances")
+abline(h=150/5,col="red")
+```
+
